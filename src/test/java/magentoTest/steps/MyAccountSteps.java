@@ -42,4 +42,8 @@ public class MyAccountSteps {
         Assert.assertTrue(checker);
     }
 
+    @Then("user validates navigation to my account page")
+    public void validateNavigateMyAccount(){
+        Assert.assertEquals(myAccountPage.getMyAccountTitle(), "My Account");
+    }
 }

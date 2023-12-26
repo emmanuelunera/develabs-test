@@ -31,7 +31,7 @@ public class MyAccountPage {
         this.wait = new Wait(driver);
     }
 
-    public String validateMyAccountPage(){
+    public String getMyAccountTitle(){
         WebElement signInTitle = wait.forElementToBeDisplayed(10, By.xpath(this.myAccountTitle));
         return signInTitle.getText();
     }

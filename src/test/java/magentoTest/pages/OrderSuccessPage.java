@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class OrderSuccessPage {
 
     private final String orderSuccessTitle = "//h1/span[@data-ui-id=\"page-title-wrapper\"]";
-    private final String orderNumber = "//div[@class=\"checkout-success\"]/p/span";
+    private final String orderNumber = "//div[@class=\"checkout-success\"]/p/*";
     private final String continueShoppingButton = "//div[@class=\"actions-toolbar\"]//span[text()=\"Continue Shopping\"]";
     private final String createAccountButton = "//div[@id=\"registration\"]//a";
 

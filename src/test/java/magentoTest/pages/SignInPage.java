@@ -17,6 +17,10 @@ public class SignInPage {
     private final String confirmPasswordField = "//input[@title=\"Confirm Password\"]";
     private final String createAccountButton = "//button[@title=\"Create an Account\"]";
 
+    private final String signInEmail = "//input[@name=\"login[username]\"]";
+    private final String signInPassword = "//input[@name=\"login[password]\"]";
+    private final String signInButton = "(//form[@id=\"login-form\"])[1]//button";
+
 
     final WebDriver driver;
     final Wait wait;
@@ -81,5 +85,21 @@ public class SignInPage {
         createAccountButton.click();
     }
 
+    public void enterLoginEmail(String email){
+        WebElement signInEmail = wait.forElementToBeDisplayed(10, By.xpath(this.signInEmail));
+        signInEmail.clear();
+        signInEmail.sendKeys(email);
+    }
+
+    public void enterLoginPassword(String password){
+        WebElement signInPassword = wait.forElementToBeDisplayed(10, By.xpath(this.signInPassword));
+        signInPassword.clear();
+        signInPassword.sendKeys(password);
+    }
+
+    public void clickSignIn(){
+        WebElement signInButton = wait.forElementToBeDisplayed(10, By.xpath(this.signInButton));
+        signInButton.click();
+    }
 
 }

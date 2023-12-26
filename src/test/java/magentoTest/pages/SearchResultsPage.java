@@ -30,6 +30,7 @@ public class SearchResultsPage {
     }
 
     public List<WebElement> getListOfResults() {
+        wait.forLoading(10);
         List<WebElement> results = wait.forElementsToBeDisplayed(20, By.xpath(this.resultLink.replace("*", AppTest.searchQuery)));
         return results;
     }

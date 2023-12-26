@@ -31,11 +31,11 @@ public class Hooks {
     @BeforeAll
     public static void beforeFeature(){
         WebDriverManager.chromedriver().setup();
-        driver = setWebDriver();
     }
 
     @Before
     public void setup(Scenario scn){
+        driver = setWebDriver();
         uiContext.setDriver(driver);
         uiContext.InitializePages(driver);
         AppTest.cartItemsInfo = new ArrayList<HashMap<String,String>>();
@@ -78,7 +78,7 @@ public class Hooks {
 
         TakesScreenshot scrShot = ((TakesScreenshot) driver);
         File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        File destFile = new File(System.getProperty("user.dir") + "/src/test/java/resources/screenshots/test.jpg");
+        File destFile = new File(System.getProperty("user.dir") + "/src/test/java/resources/screenshots/"+ scn.getName()+".jpg");
         FileUtils.copyFile(srcFile, destFile);
 
         driver.close();

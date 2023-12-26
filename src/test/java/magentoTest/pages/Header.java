@@ -1,6 +1,7 @@
 package magentoTest.pages;
 
 import magentoTest.AppTest;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import magentoTest.config.Config;
 import magentoTest.config.Wait;
@@ -47,12 +48,18 @@ public class Header {
         driver.get(conf.getUiUrl());
         WebElement storeLogo = wait.forElementToBeDisplayed(20, By.xpath(this.storeLogo));
         System.out.print(storeLogo.isDisplayed());
-        assert (storeLogo.isDisplayed());
+        Assert.assertTrue(storeLogo.isDisplayed());
     }
 
     public void gotoSignUpPage() {
         WebElement createAccountHyperlink = wait.forElementToBeDisplayed(20, By.xpath(this.createAnAccountLink));
         createAccountHyperlink.click();
+    }
+
+    public void gotoSignInPage() {
+        WebElement signInLink = wait.forElementToBeDisplayed(20, By.xpath(this.signInLink));
+        signInLink.click();
+        wait.forLoading(10);
     }
 
     public void searchForItem(String item) {
@@ -75,7 +82,7 @@ public class Header {
 
         WebElement cartCount = wait.forElementToBeDisplayed(20, By.xpath(this.cartCount));
         System.out.print(cartCount.getText());
-        assert (cartCount.isDisplayed());
+        Assert.assertTrue(cartCount.isDisplayed());
 
     }
 

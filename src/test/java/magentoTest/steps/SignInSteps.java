@@ -45,4 +45,18 @@ public class SignInSteps {
         signInPage.clickCreateAccount();
     }
 
+    @When("user enters the sign in email {string}")
+    public void enterEmailSignIn(String email){
+        signInPage.enterLoginEmail(email);
+    }
+
+    @When("user enters the sign in password {string}")
+    public void enterPasswordSignIn(String password){
+        signInPage.enterLoginPassword(password);
+    }
+
+    @When("user clicks the sign in button")
+    public void clickSignIn(){
+        signInPage.clickSignIn();
+    }
 }

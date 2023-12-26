@@ -24,6 +24,11 @@ public class LandingSteps {
         header.goToSite();
     }
 
+    @When("user opens the sign in page")
+    public void navigateToSignInPage(){
+        header.gotoSignInPage();
+    }
+
     @When("user searches for {string}")
     public void searchItem(String item){
         header.searchForItem(item);
