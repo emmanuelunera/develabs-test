@@ -39,6 +39,7 @@ public class Hooks {
         uiContext.setDriver(driver);
         uiContext.InitializePages(driver);
         AppTest.cartItemsInfo = new ArrayList<HashMap<String,String>>();
+        AppTest.newUserShippingInfo = new HashMap<String,String>();
     }
 
     public static WebDriver setWebDriver() {

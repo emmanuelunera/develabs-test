@@ -5,7 +5,9 @@ import org.openqa.selenium.*;
 import magentoTest.config.Config;
 import magentoTest.config.Wait;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class Header {
@@ -20,6 +22,14 @@ public class Header {
     private final String cartCount = "//span[@class=\"counter-number\"]";
     private final String cartLoader = "//div[@data-role=\"loader\"]";
     private final String proceedToCheckout = "//button[@title=\"Proceed to Checkout\"]";
+
+    private final String cartItem = "//div[@class=\"product-item-details\"]";
+    private final String cartItemName = "/strong/a";
+    private final String cartItemSize = "//dd[@class=\"values\"][1]";
+    private final String cartItemColor = "//dd[@class=\"values\"][2]";
+    private final String cartItemExpand = "//div[@class=\"product-item-details\"]//span[@class=\"toggle\" and @aria-expanded=\"false\"]";
+
+
 
     private final String menuItem = "//a[@role=\"menuitem\"]/span[text()=\"*\"]";
 
@@ -78,6 +88,21 @@ public class Header {
     public void proceedToCheckout(){
         WebElement proceedToCheckout = wait.forElementToBeDisplayed(20, By.xpath(this.proceedToCheckout));
         proceedToCheckout.click();
+    }
+
+    public List<HashMap<String,String>> getCartItemInfo(){
+        wait.forLoading(10);
+        List<HashMap<String,String>> itemsInfo = new ArrayList<>();
+        List<WebElement> items = wait.forElementsToBeDisplayed(10, By.xpath(cartItem));
+        for (int i=1; i<= items.size(); ++i){
+            HashMap<String,String> itemInfo = new HashMap<>();
+            System.out.print(cartItem+"["+i+"]"+cartItemName);
+            itemInfo.put("name", driver.findElement(By.xpath("("+cartItem+")["+i+"]"+cartItemName)).getText());
+            itemInfo.put("size", driver.findElement(By.xpath("("+cartItem+")["+i+"]"+cartItemSize)).getText());
+            itemInfo.put("color", driver.findElement(By.xpath("("+cartItem+")["+i+"]"+cartItemColor)).getText());
+            itemsInfo.add(itemInfo);
+        }
+        return itemsInfo;
     }
 
 }

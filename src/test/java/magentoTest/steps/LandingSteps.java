@@ -7,6 +7,7 @@ import magentoTest.pages.Header;
 import org.junit.Assert;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class LandingSteps {
 
@@ -46,11 +47,15 @@ public class LandingSteps {
         Integer expected = 0;
         for(HashMap<String, String> item: AppTest.cartItemsInfo){
             expected = expected + Integer.parseInt(item.get("quantity"));
-            System.out.println("increasing expected to" + expected);
-
         }
-        System.out.println("actual" + actual);
-        System.out.println("expected" + expected);
         Assert.assertEquals(actual,expected);
+    }
+
+    @Then("user validates items in the cart")
+    public void userValidatesCartItems(){
+        List<HashMap <String,String>> itemsInfo = header.getCartItemInfo();
+        for (HashMap<String,String> cartItemInfo: itemsInfo){
+            System.out.print(cartItemInfo);
+        }
     }
 }

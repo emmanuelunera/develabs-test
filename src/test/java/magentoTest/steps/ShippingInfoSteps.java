@@ -1,9 +1,11 @@
 package magentoTest.steps;
 
 import io.cucumber.java.en.*;
+import magentoTest.AppTest;
 import magentoTest.config.UiContext;
 import magentoTest.pages.CheckoutShippingPage;
 import magentoTest.pages.Header;
+import org.junit.Assert;
 
 import java.util.Date;
 
@@ -19,7 +21,7 @@ public class ShippingInfoSteps {
 
     @Then("user validates navigation to the shipping info page")
     public void validateNavigationToShipping(){
-        checkoutShippingPage.validateShippingPage();
+        Assert.assertEquals(checkoutShippingPage.validateShippingPage(),"Shipping Address");
     }
 
     @When("user fills up shipping info {string} field with {string}")
@@ -70,6 +72,19 @@ public class ShippingInfoSteps {
     @When("user clicks place order")
     public void clickPlaceOrder(){
         checkoutShippingPage.clickPlaceOrder();
+    }
+
+    @Then("user validates shipping info")
+    public void validateShippingInfo(){
+        String reviewInfo = checkoutShippingPage.getShippingInfoReview();
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("firstName")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("lastName")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("street")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("city")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("state")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("zipCode")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("country")));
+        Assert.assertTrue(reviewInfo.contains(AppTest.newUserShippingInfo.get("phone")));
     }
 
 }

@@ -9,6 +9,9 @@ public class UiContext {
     SearchResultsPage searchResultsPage;
     ItemInfoPage itemInfoPage;
     CheckoutShippingPage checkoutShippingPage;
+    OrderSuccessPage orderSuccessPage;
+    SignInPage signInPage;
+    MyAccountPage myAccountPage;
 
     WebDriver driver;
 
@@ -36,11 +39,26 @@ public class UiContext {
         return checkoutShippingPage;
     }
 
+    public OrderSuccessPage getOrderSuccessPage() {
+        return orderSuccessPage;
+    }
+
+    public SignInPage getSignInPage() {
+        return signInPage;
+    }
+
+    public MyAccountPage getMyAccountPage() {
+        return myAccountPage;
+    }
+
 
     public void InitializePages(WebDriver driver) {
         header = new Header(driver);
         searchResultsPage = new SearchResultsPage(driver);
         itemInfoPage = new ItemInfoPage(driver);
         checkoutShippingPage = new CheckoutShippingPage(driver);
+        orderSuccessPage = new OrderSuccessPage(driver);
+        signInPage = new SignInPage(driver);
+        myAccountPage = new MyAccountPage(driver);
     }
 }

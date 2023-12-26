@@ -14,12 +14,22 @@ import java.util.HashMap;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"json:target/destination/cucumber.json", "pretty", "html:target/cucumber-reports/report.html"},
-        glue = { "classpath:magentoTest/steps"}
+        features="classpath:features",
+        plugin = {
+                "json:target/cucumber.json",
+                "pretty",
+                "html:target/cucumber-reports.html"
+        },
+        glue = {
+                "classpath:magentoTest/steps"
+        },
+        monochrome = true
         )
 public class AppTest {
         public static String searchQuery = "";
         public static Integer currentCartCount = 0;
         public static HashMap<String, String> currentItemInfo;
         public static ArrayList<HashMap<String, String>> cartItemsInfo;
+        public static HashMap<String, String> newUserShippingInfo;
+        public static String orderNumber;
 }
