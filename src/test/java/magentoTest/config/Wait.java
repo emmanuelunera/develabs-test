@@ -74,4 +74,9 @@ public class Wait {
                 + " seconds.";
         waitUntilCondition(condition, timeoutMessage, timeout);
     }
+
+
+    public static void main(String args[]){
+        System.out.println(System.getProperty("user.dir"));
+    }
 }

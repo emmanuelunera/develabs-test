@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import magentoTest.config.*;
+import org.openqa.selenium.manager.SeleniumManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,18 +47,22 @@ public class Hooks {
         Config config = new Config();
         switch (config.getBrowser()) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+//                System.out.println(System.getProperty("user.dir"));
+//                WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--disable-dev-shm-usage");
 //                chromeOptions.addArguments("--headless");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--ignore-certificate-error");
                 chromeOptions.addArguments("--enable-features=NetworkService");
-                chromeOptions.addArguments("--user-agent=Chrome/113");
+//                chromeOptions.addArguments("--user-agent=Chrome/113");
                 chromeOptions.addArguments("--window-size=1920,1080");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--start-maximized");
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+//                System.setProperty("webdriver.chrome.driver", SeleniumManager.getInstance().getDriverPath(chromeOptions));
+                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\test\\java\\magentoTest\\config\\chromedriver.exe");
+
                 driver = new ChromeDriver(chromeOptions);
                 driver.manage().window().maximize();
                 break;
